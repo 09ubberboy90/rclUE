@@ -98,6 +98,8 @@ void UROS2NodeComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 // different/relevant in each of Child classes
 void UROS2NodeComponent::Init()
 {
+    AActor* MyOwner = this->GetOwner();
+    UE_LOG_WITH_INFO_NAMED(LogROS2Node, Warning, TEXT("Node Owner is [%s]"), *MyOwner->GetName());
     this->RegisterComponent();
     if (Name.IsEmpty())
     {
