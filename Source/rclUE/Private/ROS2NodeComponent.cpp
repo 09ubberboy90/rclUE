@@ -99,7 +99,12 @@ void UROS2NodeComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 void UROS2NodeComponent::Init()
 {
     AActor* MyOwner = this->GetOwner();
-    UE_LOG_WITH_INFO_NAMED(LogROS2Node, Warning, TEXT("Node Owner is [%s]"), *MyOwner->GetName());
+    if (!MyOwner)
+    {
+        UE_LOG_WITH_INFO_NAMED(LogROS2Node, Warning, TEXT("Node [%s] doesn\'t have an owner"), *Name);
+        return;
+    }
+    UE_LOG_WITH_INFO_NAMED(LogROS2Node, Log, TEXT("Node Owner is [%s]"), *MyOwner->GetName());
     this->RegisterComponent();
     if (Name.IsEmpty())
     {
